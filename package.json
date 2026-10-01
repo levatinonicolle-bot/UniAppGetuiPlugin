@@ -1,0 +1,47 @@
+{
+  "name": "Hongdou Getui Push",
+  "id": "GetuiPush",
+  "version": "1.0.0",
+  "description": "Getui Android SDK bridge for the Hongdou UniApp project",
+  "_dp_type": "nativeplugin",
+  "_dp_nativeplugin": {
+    "android": {
+      "plugins": [
+        {
+          "type": "module",
+          "name": "GetuiPush",
+          "class": "com.hongdou.getuiplugin.GetuiPushModule"
+        }
+      ],
+      "hooksClass": "com.hongdou.getuiplugin.GetuiPushHook",
+      "integrateType": "aar",
+      "compileOptions": {
+        "sourceCompatibility": "1.8",
+        "targetCompatibility": "1.8"
+      },
+      "abis": [
+        "armeabi-v7a",
+        "arm64-v8a",
+        "x86"
+      ],
+      "minSdkVersion": "19",
+      "useAndroidX": true,
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.ACCESS_WIFI_STATE",
+        "android.permission.WAKE_LOCK",
+        "android.permission.VIBRATE",
+        "android.permission.POST_NOTIFICATIONS"
+      ],
+      "parameters": {
+        "GETUI_APPID": {
+          "des": "个推应用 AppID",
+          "key": "GETUI_APPID",
+          "type": "string",
+          "value": ""
+        }
+      }
+    }
+  }
+}

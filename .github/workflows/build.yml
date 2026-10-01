@@ -1,0 +1,42 @@
+name: Build Android AAR
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout代码
+      uses: actions/checkout@v4
+
+    - name: 设置JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: 设置Gradle Wrapper
+      uses: gradle/actions/setup-gradle@v4
+
+    - name: 构建AAR
+      run: gradle assembleRelease --stacktrace
+      working-directory: ./android
+
+    - name: 查找并重命名AAR文件
+      run: |
+        mkdir -p output
+        find android/build/outputs/aar -name "*.aar" -type f -exec cp {} output/GetuiPush.aar \;
+        ls -lh output/
+
+    - name: 上传AAR文件
+      uses: actions/upload-artifact@v4
+      with:
+        name: GetuiPush-AAR
+        path: output/GetuiPush.aar
+        retention-days: 30
