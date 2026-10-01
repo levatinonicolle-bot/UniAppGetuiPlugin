@@ -31,12 +31,16 @@ android {
 }
 
 dependencies {
-    // 个推SDK核心库
-    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    // 个推SDK核心库 - 直接引用当前目录的aar文件
+    implementation files('gsido-1.4.14.0.aar')
+    implementation files('gtc-3.3.3.0.aar')
+    implementation files('gtsdk-3.3.16.0.aar')
+    implementation files('sdk-prod-channel-getui-3.3.7.58976.aar')
 
     // Android基础库
     implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
 
-    // UniApp基础库（需要从DCloud SDK中获取）
-    compileOnly 'io.dcloud:uniapp-v8-release:3.0.0'
+    // UniApp基础库暂时注释，避免构建失败
+    // compileOnly 'io.dcloud:uniapp-v8-release:3.0.0'
 }
